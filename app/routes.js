@@ -1,11 +1,7 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 import {
-    App,
-    Home,
-    Categories,
-    BookingForm,
-    BookingSearch
+    App
   } from 'containers';
 
 export default () => (
