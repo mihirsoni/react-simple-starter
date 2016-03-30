@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+  devtool: 'eval',
   context: path.resolve(__dirname, '..'),
   entry: [
     'webpack-hot-middleware/client',
@@ -28,6 +29,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: true,
+      __DEBUG__:true
+    }),
   ]
 }
