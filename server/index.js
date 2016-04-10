@@ -5,10 +5,13 @@ var config = require('../webpack/webpack.config.dev');
 
 var app = express();
 var compiler = webpack(config);
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath
-}));
+var serverOptions = {
+    hot: true,
+    lazy: false,
+    publicPath: config.output.publicPath,
+    stats: {colors: true}
+  };
+app.use(require('webpack-dev-middleware')(compiler, serverOptions));
 
 app.use(require('webpack-hot-middleware')(compiler));
 
