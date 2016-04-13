@@ -1,14 +1,14 @@
 export const ADD_TODO = 'TODO/ADD_TODO';
 export const DELETE_TODO = 'TODO/DELETE_TODO';
 export const EDIT_TODO = 'TODO/EDIT_TODO';
-export const COMPLETE_TODO = 'TODO/COMPLETE_TODO';
+export const TOGGLE_TODO = 'TODO/TOGGLE_TODO';
 export const COMPLETE_ALL = 'TODO/COMPLETE_ALL';
 export const CLEAR_COMPLETED = 'TODO/CLEAR_COMPLETED';
 
 const initialState = [
   {
     text: 'Intial Todo',
-    completed: false,
+    completed: true,
     id: 0
   }
 ];
@@ -36,7 +36,7 @@ export default function todos(state = initialState, action) {
         return newtoDo;
       }
     );
-    case COMPLETE_TODO: {
+    case TOGGLE_TODO: {
       return state.map((todo) => {
         const newtoDo = todo.id === action.id ?
             Object.assign({}, todo, { completed: !todo.completed }) :
@@ -69,8 +69,8 @@ export function editTodo(id, text) {
   return { type: EDIT_TODO, id, text };
 }
 
-export function completeTodo(id) {
-  return { type: COMPLETE_TODO, id };
+export function toggleTodo(id) {
+  return { type: TOGGLE_TODO, id };
 }
 
 export function completeAll() {
